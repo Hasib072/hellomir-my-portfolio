@@ -27,3 +27,7 @@ body {
   width: auto;
   margin-bottom: 25px;
 }
+
+.fade-in {
+  opacity: 0;
+}

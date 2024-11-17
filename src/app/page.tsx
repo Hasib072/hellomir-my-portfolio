@@ -1,8 +1,9 @@
 
 "use client";
-import Image from "next/image";
-import 'locomotive-scroll/dist/locomotive-scroll.css';
 import { useEffect } from "react";
+import 'locomotive-scroll/dist/locomotive-scroll.css';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 
 export default function Home() {
@@ -11,8 +12,28 @@ export default function Home() {
     (async () => {
       const LocomotiveScroll = (await import('locomotive-scroll')).default;
       const locomotiveScroll = new LocomotiveScroll();
+      
     })();
   })
+
+  useEffect(() => {
+    // Register the plugin
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Your GSAP animation code here
+    gsap.to('.box', {
+      scrollTrigger: {
+        trigger: '.box',
+        start: 'top center',
+        end: 'bottom 100px',
+        scrub: true,
+        markers: true, // Remove this in production
+      },
+      x: 500,
+      rotation: 360,
+      duration: 3,
+    });
+  }, []);
 
   return (
     <>
@@ -37,7 +58,14 @@ export default function Home() {
     </div>
     </div>
     
-    <div className="testdiv"></div>
+    <div>
+      <div style={{ height: '100vh' }}>
+        <h1>Scroll down to see the animation</h1>
+      </div>
+      <div className="box" style={{ width: 100, height: 100, background: 'red' }}></div>
+      <div style={{ height: '100vh' }}></div>
+    </div>
+
     <div className="testdiv"></div>
     <div className="testdiv"></div>
     </>
