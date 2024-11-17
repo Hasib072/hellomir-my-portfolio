@@ -45,13 +45,13 @@ export default function NavBar() {
           {/* Center - Nav Links */}
           <div className="hidden md:flex flex-1 justify-center">
             <div className="flex items-baseline space-x-8">
-              <Link href="/projects" className="nav-link">
+              <Link href="/projects" className="nav-link text-black">
                 Projects
               </Link>
-              <Link href="/about" className="nav-link">
+              <Link href="/about" className="nav-link text-black">
                 About
               </Link>
-              <Link href="/blog" className="nav-link">
+              <Link href="/blog" className="nav-link text-black">
                 Blog
               </Link>
             </div>

@@ -4,13 +4,13 @@
     font-size: 1.5rem; /* Adjust as needed */
     font-weight: bold;
     cursor: pointer;
-    color: #fff; /* Adjust color as needed */
+    color: #000; /* Adjust color as needed */
     white-space: nowrap;
     width: 20ch; /* Set width to accommodate longest text */
     overflow: hidden;
   }
   
   .dud {
-    color: #b9b9b9; /* Color for scrambled characters */
+    color: #282828; /* Color for scrambled characters */
   }
   
