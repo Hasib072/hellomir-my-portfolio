@@ -12,7 +12,7 @@ export default function Home() {
     (async () => {
       const LocomotiveScroll = (await import('locomotive-scroll')).default;
       // eslint-disable-next-line no-unused-vars
-      const locomotiveScroll = new LocomotiveScroll();
+      new LocomotiveScroll();
       
     })();
   })
