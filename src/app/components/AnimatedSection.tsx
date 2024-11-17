@@ -29,7 +29,7 @@ export default function AnimatedSection() {
   return (
     <section ref={sectionRef} className="animated-section">
       <h1 className="fade-in text-white">Welcome to My Portfolio</h1>
-      <p className="fade-in">I'm excited to share my work with you.</p>
+      <p className="fade-in">I&apos;m excited to share my work with you.</p>
       <button className="fade-in">Learn More</button>
     </section>
   );
