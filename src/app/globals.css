@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* @import 'locomotive-scroll.css'; */
 
 :root {
   --background: #ffffff;
@@ -18,4 +19,11 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.testdiv{
+  background-color: aqua;
+  height: 500px;
+  width: auto;
+  margin-bottom: 25px;
 }
