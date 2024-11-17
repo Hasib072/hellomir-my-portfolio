@@ -13,15 +13,16 @@ const geistMono = localFont({
   variable: "--font-geist-mono",
   weight: "100 900",
 });
-const inter = localFont({
-  src: "./fonts/Inter.ttf",
-  weight: "100 900",
-});
 
-const antonSC = localFont({
-  src: "./fonts/AntonSC.ttf",
-  weight: "100 900",
-});
+// const inter = localFont({
+//   src: "./fonts/Inter.ttf",
+//   weight: "100 900",
+// });
+
+// const antonSC = localFont({
+//   src: "./fonts/AntonSC.ttf",
+//   weight: "100 900",
+// });
 
 export const metadata: Metadata = {
   title: "Create Next App",

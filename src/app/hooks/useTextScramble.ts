@@ -8,7 +8,6 @@ interface QueueItem {
   start: number;
   end: number;
   char?: string;
-  same: boolean;
 }
 
 interface UseTextScrambleOptions {
@@ -22,22 +21,23 @@ export const useTextScramble = (
   { texts, revealDuration = 800, hideDuration = 800 }: UseTextScrambleOptions
 ) => {
   const chars = '!<>-_\\/[]{}—=+*^?#________';
-  const frameRequest = useRef<number>();
+  const frameRequest = useRef<number | null>(null);
   const queue = useRef<QueueItem[]>([]);
   const frame = useRef(0);
   const resolvePromise = useRef<() => void>();
+
+  const randomChar = () => {
+    return chars[Math.floor(Math.random() * chars.length)];
+  };
 
   const update = () => {
     if (!textRef.current) return;
     let output = '';
     let complete = 0;
     for (let i = 0, n = queue.current.length; i < n; i++) {
-      let { from, to, start, end, char, same } = queue.current[i];
-      if (same) {
-        // Characters are the same; output without scrambling
-        output += to;
-        complete++;
-      } else if (frame.current >= end) {
+      const { from, to, start, end } = queue.current[i];
+      let char = queue.current[i].char;
+      if (frame.current >= end) {
         complete++;
         output += to;
       } else if (frame.current >= start) {
@@ -52,10 +52,12 @@ export const useTextScramble = (
     }
     textRef.current.innerHTML = output;
     if (complete === queue.current.length) {
-      resolvePromise.current && resolvePromise.current();
+      if (resolvePromise.current) {
+        resolvePromise.current();
+      }
     } else {
-      frameRequest.current = requestAnimationFrame(update);
       frame.current++;
+      frameRequest.current = requestAnimationFrame(update);
     }
   };
 
@@ -68,19 +70,16 @@ export const useTextScramble = (
     for (let i = 0; i < length; i++) {
       const from = oldText[i] || '';
       const to = newText[i] || '';
-      const same = from === to;
       const start = Math.floor(Math.random() * (durationMs / 40));
       const end = start + Math.floor(Math.random() * (durationMs / 40));
-      queue.current.push({ from, to, start, end, same });
+      queue.current.push({ from, to, start, end });
     }
-    cancelAnimationFrame(frameRequest.current!);
+    if (frameRequest.current !== null) {
+      cancelAnimationFrame(frameRequest.current);
+    }
     frame.current = 0;
     update();
     return promise;
-  };
-
-  const randomChar = () => {
-    return chars[Math.floor(Math.random() * chars.length)];
   };
 
   useEffect(() => {
@@ -103,7 +102,9 @@ export const useTextScramble = (
         el.removeEventListener('mouseenter', handleMouseEnter);
         el.removeEventListener('mouseleave', handleMouseLeave);
       }
-      cancelAnimationFrame(frameRequest.current!);
+      if (frameRequest.current !== null) {
+        cancelAnimationFrame(frameRequest.current);
+      }
     };
   }, [textRef, texts, revealDuration, hideDuration]);
 };
