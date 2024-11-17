@@ -63,7 +63,7 @@ export default function NavBar() {
               href="/contact"
               className="text-lg font-bold px-4 py-2 border-2 border-black hover:bg-black hover:text-white transition-colors inline-block"
             >
-              Let's Talk
+              Let&apos;s Talk
             </Link>
           </div>
         </div>
