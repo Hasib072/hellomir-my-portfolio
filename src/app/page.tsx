@@ -61,7 +61,7 @@ export default function Home() {
     
     <div>
       <div style={{ height: '100vh' }}>
-        <h1>Scroll down to see the animation</h1>
+        <h1>Scroll down to see the animation!</h1>
       </div>
       <div className="box" style={{ width: 100, height: 100, background: 'red' }}></div>
       <div style={{ height: '100vh' }}></div>
